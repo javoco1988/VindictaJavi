@@ -1976,12 +1976,44 @@ CLASS("Unit", ["Storable" ARG "GOAP_Agent"])
 
 	/*
 	Method: (static)createUnitFromObjectHandle
-	NYI
 	Creates a unit and instantly attaches it to provided object handle.
 
 	Returns: <Unit>
 	*/
 	public STATIC_METHOD(createUnitFromObjectHandle)
+		params [P_THISCLASS, P_OBJECT("_objectHandle"), ["_catID", -1], ["_subcatID", -1]];
+
+		if (isNull _objectHandle) exitWith { NULL_OBJECT };
+
+		// Return already registered unit if it exists
+		private _existingUnit = GET_UNIT_FROM_OBJECT_HANDLE(_objectHandle);
+		if (_existingUnit != "") exitWith { _existingUnit };
+
+		// Try to classify object automatically when category wasn't provided
+		if (_catID < 0) then {
+			if ((_objectHandle isKindOf "AllVehicles") && {!(_objectHandle isKindOf "Man")}) then {
+				_catID = T_VEH;
+			} else {
+				_catID = T_CARGO;
+			};
+		};
+
+		// Pick a generic subcategory when it wasn't provided
+		if (_subcatID < 0) then {
+			_subcatID = switch (_catID) do {
+				case T_VEH: { T_VEH_DEFAULT };
+				case T_CARGO: { T_CARGO_box_medium };
+				default { 0 };
+			};
+		};
+
+		private _args = [[], _catID, _subcatID, -1, "", _objectHandle];
+		private _unit = NEW("Unit", _args);
+		if (!CALLM0(_unit, "isValid")) exitWith {
+			OOP_ERROR_2("createUnitFromObjectHandle: Failed to create valid Unit object for %1 (cat: %2)", _objectHandle, _catID);
+			NULL_OBJECT
+		};
+		_unit
 	ENDMETHOD;
 
 

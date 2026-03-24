@@ -815,7 +815,10 @@ CLASS("GameModeBase", "MessageReceiverEx")
 			&& {_co distance player < 7}										// Player must be close to object
 			&& {! (_co isKindOf "Man")}											// Object must not be infantry
 			&& {['', player] call PlayerMonitor_fnc_isUnitAtFriendlyLocation}	// Player must be at a friendly location
-			&& {(['', _co] call unit_fnc_getUnitFromObjectHandle) != ''}		// Object must be a valid unit OOP object (no shit spawned by zeus for now)
+			&& {
+				private _unit = ['', _co] call unit_fnc_getUnitFromObjectHandle;
+				(_unit != '') || {(_co isKindOf "AllVehicles") && {alive _co}}
+			}																	// Existing unit OR an unregistered live vehicle (e.g. Zeus-created)
 			&& {alive _co}														// Object must be alive
 		};
 		_newUnit addAction [format ["<img size='1.5' image='\A3\ui_f\data\GUI\Rsc\RscDisplayMain\infodlcsowned_ca.paa' />  %1", localize "STR_GMB_ATTACH_TO_GARRISON"], // title // pic: arrow pointing down

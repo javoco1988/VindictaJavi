@@ -57,14 +57,16 @@ CLASS("AttachToGarrisonDialog", "DialogOneTabButtons")
 		pr _ctrl = T_CALLM1("getButtonControl", 0);
 		_ctrl ctrlEnable false;
 
-		// Bail if wrong object...
-		if (IS_NULL_OBJECT(_unit)) exitWith {
-			T_CALLM1("setText", localize "STR_ATG_ERROR_WRONG_UNIT");
-		};
-
 		// Bail if we aren't at location...
 		if (IS_NULL_OBJECT(_loc)) exitWith {
 			T_CALLM1("setText", localize "STR_ATG_ERROR_NO_LOC");
+		};
+
+		// Fallback for objects that exist in game but don't have a Unit OOP object yet (for example Zeus-created vehicles)
+		if (IS_NULL_OBJECT(_unit)) exitWith {
+			T_SETV("state", 4); // "attach object" mode
+			T_CALLM1("setText", localize "STR_ATG_LOADING");
+			_ctrl ctrlEnable true;
 		};
 
 		// All is fine! (for now)
@@ -89,15 +91,19 @@ CLASS("AttachToGarrisonDialog", "DialogOneTabButtons")
 
 		// Bail if state is incorrect
 		// Really event handler shouldn't even get triggered because the button is disabled but who knows...?!
-		if(T_GETV("state") != 2) exitWith { // 2 is an OK code in this case
+		if !((T_GETV("state") in [2, 4])) exitWith { // 2 normal attach, 4 attach object fallback
 			OOP_ERROR_0("Wrong state");
 		};
 
-		// So far most of the parameters must have been verified by server
-
-		// Send request to server
-		pr _args = [clientOwner, T_GETV("unit"), T_GETV("garrison")];
-		CALLM2(gGarrisonServer, "postMethodAsync", "attachUnit", _args);
+		if (T_GETV("state") == 2) then {
+			// So far most of the parameters must have been verified by server
+			pr _args = [clientOwner, T_GETV("unit"), T_GETV("garrison")];
+			CALLM2(gGarrisonServer, "postMethodAsync", "attachUnit", _args);
+		} else {
+			// Fallback for unregistered objects
+			pr _args = [clientOwner, T_GETV("hO"), T_GETV("garrison")];
+			CALLM2(gGarrisonServer, "postMethodAsync", "attachObjectToGarrison", _args);
+		};
 
 	ENDMETHOD;
 
@@ -110,7 +116,13 @@ CLASS("AttachToGarrisonDialog", "DialogOneTabButtons")
 		if (isNil "_thisObject") exitWith {}; // Ignore this as we have already closed the dialog
 
 		// Ignore this if it's not related to the unit we requested
-		if (T_GETV("unit") != _unit) exitWith {};
+		pr _requestedUnit = T_GETV("unit");
+		if (!IS_NULL_OBJECT(_requestedUnit) && {_requestedUnit != _unit}) exitWith {};
+
+		// In fallback mode the unit can be created server-side, so we store it now
+		if (IS_NULL_OBJECT(_requestedUnit) && {!IS_NULL_OBJECT(_unit)}) then {
+			T_SETV("unit", _unit);
+		};
 
 		// Set state variable
 		T_SETV("state", _code); // 2 is OK, everything else is some error code
