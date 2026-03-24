@@ -567,4 +567,59 @@ CLASS("GarrisonServer", "MessageReceiverEx")
 
 	ENDMETHOD;
 
+	// Called from AttachToGarrisonDialog as a fallback for objects that do not yet have a Unit object
+	public server METHOD(attachObjectToGarrison)
+		params [P_THISOBJECT, P_NUMBER("_clientOwner"), P_OBJECT("_hO"), P_OOP_OBJECT("_gar")];
+
+		OOP_INFO_1("ATTACH OBJECT TO GARRISON: %1", _this);
+
+		if (isNull _hO || {!alive _hO}) exitWith {
+			pr _args = [NULL_OBJECT, 0];
+			REMOTE_EXEC_CALL_STATIC_METHOD("AttachToGarrisonDialog", "staticShowServerResponse_0", _args, _clientOwner, NO_JIP);
+			OOP_ERROR_1("attachObjectToGarrison: invalid object handle: %1", _hO);
+		};
+
+		if (_hO isKindOf "Man") exitWith {
+			pr _args = [NULL_OBJECT, 0];
+			REMOTE_EXEC_CALL_STATIC_METHOD("AttachToGarrisonDialog", "staticShowServerResponse_0", _args, _clientOwner, NO_JIP);
+			OOP_ERROR_1("attachObjectToGarrison: infantry object is not supported: %1", _hO);
+		};
+
+		// Ensure garrison is correct
+		if (!IS_OOP_OBJECT(_gar) || {IS_NULL_OBJECT(_gar)}) exitWith {
+			pr _args = [NULL_OBJECT, 3]; // Report wrong garrison
+			REMOTE_EXEC_CALL_STATIC_METHOD("AttachToGarrisonDialog", "staticShowServerResponse_0", _args, _clientOwner, NO_JIP);
+			OOP_ERROR_1("attachObjectToGarrison: garrison %1 is not valid!", _gar);
+		};
+
+		// Ensure garrison is spawned
+		if (!CALLM0(_gar, "isSpawned")) then {
+			OOP_ERROR_0("Client added unit to a despawned garrison");
+			CALLM0(_gar, "spawn");
+		};
+
+		// Resolve existing Unit object, or create one for Zeus-created objects
+		pr _unit = CALLSM1("Unit", "getUnitFromObjectHandle", _hO);
+		if (IS_NULL_OBJECT(_unit)) then {
+			pr _catID = if ((_hO isKindOf "AllVehicles") && {!(_hO isKindOf "Man")}) then { T_VEH } else { T_CARGO };
+			pr _subcatID = [T_CARGO_box_medium, T_VEH_DEFAULT] select (_catID == T_VEH);
+			_unit = CALLSM3("Unit", "createUnitFromObjectHandle", _hO, _catID, _subcatID);
+		};
+
+		if (!IS_OOP_OBJECT(_unit) || {IS_NULL_OBJECT(_unit)}) exitWith {
+			pr _args = [NULL_OBJECT, 0];
+			REMOTE_EXEC_CALL_STATIC_METHOD("AttachToGarrisonDialog", "staticShowServerResponse_0", _args, _clientOwner, NO_JIP);
+			OOP_ERROR_1("attachObjectToGarrison: failed to resolve unit for object %1", _hO);
+		};
+
+		// Capture the unit with existing garrison mechanisms
+		CALLM1(_gar, "captureUnit", _unit);
+
+		// Report success to user
+		pr _args = [_unit, 2,	// 2 is an OK code
+					CALLM0(_unit, "getCategory"), _gar, CALLM0(_gar, "getSide")];
+		REMOTE_EXEC_CALL_STATIC_METHOD("AttachToGarrisonDialog", "staticShowServerResponse_0", _args, _clientOwner, NO_JIP);
+
+	ENDMETHOD;
+
 ENDCLASS;
