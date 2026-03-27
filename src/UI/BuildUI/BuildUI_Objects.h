@@ -60,38 +60,38 @@ class BuildObjects
 			__BUILD_OBJECT_CLASS(CatTents,Land_TentA_F, 										10);
 
 			// Medium tents (4 person)
-			__BUILD_OBJECT_CLASS(CatTents,Land_TentDome_F, 										20);
+			__BUILD_OBJECT_CLASS(CatTents,Land_TentDome_F, 										10);
 
 			// Medium tents (16 person)
-			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_aaf_generic_open_F, 				80);
-			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_CSAT_brownhex_generic_open_F, 	80);
-			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_NATO_generic_open_F, 				80);
-			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_wdl_generic_open_F, 				80);
+			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_aaf_generic_open_F, 				10);
+			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_CSAT_brownhex_generic_open_F, 	10);
+			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_NATO_generic_open_F, 				10);
+			__BUILD_OBJECT_CLASS(CatTents,Land_MedicalTent_01_wdl_generic_open_F, 				10);
 		};
 
 		class CatMedical {
 			displayName = $STR_BUIO_MEDICAL;
 
-			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_MTP_closed_F,					60);
-			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_digital_closed_F,				60);
-			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_brownhex_closed_F,				60);
-			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_wdl_F,							60);
-			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_wdl_closed_F,					60);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_MTP_closed_F,					10);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_digital_closed_F,				10);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_brownhex_closed_F,				10);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_wdl_F,							10);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_MedicalTent_01_wdl_closed_F,					10);
 
 			// plain brown
-			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_NATO_F,							60);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_NATO_F,							10);
 
 			// plain green
-			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_NATO_tropic_F,					60);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_NATO_tropic_F,					10);
 			
 			// plain white
-			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_white_F,							60);
+			__BUILD_OBJECT_CLASS(CatMedical,Land_DeconTent_01_white_F,							10);
 		};
 
 		class CatRepair {
 			displayName = "Repair";
 
-			__BUILD_OBJECT_CLASS(CatRepair,Land_Workshop_01_F,								100);
+			__BUILD_OBJECT_CLASS(CatRepair,Land_Workshop_01_F,								10);
 
 			class CatRepair_ACE_Wheel : BuildObjectAceRepairBase {
 				className = "ACE_Wheel";
@@ -108,19 +108,19 @@ class BuildObjects
 			displayName = $STR_BUIO_STORAGE;
 
 			// Note that we have increased capacity of these boxes through the addon 
-			__BUILD_OBJECT_CLASS_CAT(CatStorage,Box_FIA_Support_F,								20, 3, 2);
-			//__BUILD_OBJECT_CLASS_CAT(CatStorage,Box_Syndicate_Ammo_F,							20, 3, 1); // Too powerful
-			__BUILD_OBJECT_CLASS_CAT(CatStorage,I_supplyCrate_F,								20, 3, 2);
-			__BUILD_OBJECT_CLASS_CAT(CatStorage,B_CargoNet_01_ammo_F,							20, 3, 3);
+			__BUILD_OBJECT_CLASS_CAT(CatStorage,Box_FIA_Support_F,								10, 3, 2);
+			//__BUILD_OBJECT_CLASS_CAT(CatStorage,Box_Syndicate_Ammo_F,							10, 3, 1); // Too powerful
+			__BUILD_OBJECT_CLASS_CAT(CatStorage,I_supplyCrate_F,								10, 3, 2);
+			__BUILD_OBJECT_CLASS_CAT(CatStorage,B_CargoNet_01_ammo_F,							10, 3, 3);
 		};
 
 		class CatCamo {
 			displayName = $STR_BUIO_CAMO;
 
 			// Camo nets
-			__BUILD_OBJECT_CLASS(CatCamo,CamoNet_OPFOR_F,										20);
-			__BUILD_OBJECT_CLASS(CatCamo,CamoNet_OPFOR_open_F,									20);
-			__BUILD_OBJECT_CLASS(CatCamo,CamoNet_OPFOR_big_F,									20);
+			__BUILD_OBJECT_CLASS(CatCamo,CamoNet_OPFOR_F,										10);
+			__BUILD_OBJECT_CLASS(CatCamo,CamoNet_OPFOR_open_F,									10);
+			__BUILD_OBJECT_CLASS(CatCamo,CamoNet_OPFOR_big_F,									10);
 		};
 
 		class Lighting {
@@ -139,34 +139,34 @@ class BuildObjects
 
 			// cheap makeshift barriers
 			__BUILD_OBJECT_CLASS(Defense,Land_SlumWall_01_s_2m_F,								10);
-			__BUILD_OBJECT_CLASS(Defense,Land_SlumWall_01_s_4m_F,								20);
-			__BUILD_OBJECT_CLASS(Defense,Land_SandbagBarricade_01_hole_F,						20);
-			__BUILD_OBJECT_CLASS(Defense,Land_SandbagBarricade_01_F,							20);
-			__BUILD_OBJECT_CLASS(Defense,Land_SandbagBarricade_01_half_F,						20);
-			__BUILD_OBJECT_CLASS(Defense,Land_Barricade_01_10m_F,								20);
-			__BUILD_OBJECT_CLASS(Defense,Land_Barricade_01_4m_F,								20);
+			__BUILD_OBJECT_CLASS(Defense,Land_SlumWall_01_s_4m_F,								10);
+			__BUILD_OBJECT_CLASS(Defense,Land_SandbagBarricade_01_hole_F,						10);
+			__BUILD_OBJECT_CLASS(Defense,Land_SandbagBarricade_01_F,							10);
+			__BUILD_OBJECT_CLASS(Defense,Land_SandbagBarricade_01_half_F,						10);
+			__BUILD_OBJECT_CLASS(Defense,Land_Barricade_01_10m_F,								10);
+			__BUILD_OBJECT_CLASS(Defense,Land_Barricade_01_4m_F,								10);
 
 			// dirt mound
-			__BUILD_OBJECT_CLASS(Defense,Land_Rampart_F,										30);
+			__BUILD_OBJECT_CLASS(Defense,Land_Rampart_F,										10);
 
 			// razorwire
 			__BUILD_OBJECT_CLASS(Defense,Land_Razorwire_F,										10);
 
 			// garbage
-			__BUILD_OBJECT_CLASS(Defense,Land_ConcretePipe_F,									20);
+			__BUILD_OBJECT_CLASS(Defense,Land_ConcretePipe_F,									10);
 			__BUILD_OBJECT_CLASS(Defense,Land_Bricks_V4_F,										10);
 			__BUILD_OBJECT_CLASS(Defense,Land_Timbers_F,										10);
 
-			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrier_F,										20);
-			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrierMedium_F,								40);
-			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrierMedium4_F,								60);
-			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrier_stripes_F,								20);
+			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrier_F,										10);
+			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrierMedium_F,								10);
+			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrierMedium4_F,								10);
+			__BUILD_OBJECT_CLASS(Defense,Land_CncBarrier_stripes_F,								10);
 
 			// brown h-barriers
-			__BUILD_OBJECT_CLASS(Defense,Land_HBarrier_Big_F,									40);
-			__BUILD_OBJECT_CLASS(Defense,Land_HBarrier_3_F,										40);
-			__BUILD_OBJECT_CLASS(Defense,Land_HBarrierWall6_F,									60);
-			__BUILD_OBJECT_CLASS(Defense,Land_HBarrierTower_F,									80);
+			__BUILD_OBJECT_CLASS(Defense,Land_HBarrier_Big_F,									10);
+			__BUILD_OBJECT_CLASS(Defense,Land_HBarrier_3_F,										10);
+			__BUILD_OBJECT_CLASS(Defense,Land_HBarrierWall6_F,									10);
+			__BUILD_OBJECT_CLASS(Defense,Land_HBarrierTower_F,									10);
 		};
 
 		class TargetRange {
@@ -174,32 +174,32 @@ class BuildObjects
 
 			// small targets
 			__BUILD_OBJECT_CLASS(TargetRange,Land_Target_Oval_F,								10);
-			__BUILD_OBJECT_CLASS(TargetRange,TargetP_Inf_F,										20);
-			__BUILD_OBJECT_CLASS(TargetRange,TargetP_Inf_Acc2_F,								20);
+			__BUILD_OBJECT_CLASS(TargetRange,TargetP_Inf_F,										10);
+			__BUILD_OBJECT_CLASS(TargetRange,TargetP_Inf_Acc2_F,								10);
 
 			// concrete targets
-			__BUILD_OBJECT_CLASS(TargetRange,Land_Target_Concrete_01_v2_F,						60);
-			__BUILD_OBJECT_CLASS(TargetRange,Land_Target_Concrete_01_v1_F,						60);
-			__BUILD_OBJECT_CLASS(TargetRange,Land_Target_Concrete_Support_01_F,					20);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_Target_Concrete_01_v2_F,						10);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_Target_Concrete_01_v1_F,						10);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_Target_Concrete_Support_01_F,					10);
 
 			// RPG targets
-			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_Skodovka_F,								60);
-			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_Van_F,									60);
-			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_Truck_dropside_F,						60);
-			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_BMP2_F,									80);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_Skodovka_F,								10);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_Van_F,									10);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_Truck_dropside_F,						10);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_Wreck_BMP2_F,									10);
 
-			__BUILD_OBJECT_CLASS(TargetRange,Land_ShootingPos_Roof_01_F,						20);
+			__BUILD_OBJECT_CLASS(TargetRange,Land_ShootingPos_Roof_01_F,						10);
 		};
 
 		class BuildingsA {
 			displayName = $STR_BUIO_BUILDINGS;
 
 			// towers and bunkers
-			__BUILD_OBJECT_CLASS(BuildingsA,Land_GuardTower_01_F,								160);
-			__BUILD_OBJECT_CLASS(BuildingsA,Land_BagBunker_Large_F,								160);
-			__BUILD_OBJECT_CLASS(BuildingsA,Land_BagBunker_Small_F,								80);
-			__BUILD_OBJECT_CLASS(BuildingsA,Land_BagBunker_Tower_F,								160);
-			__BUILD_OBJECT_CLASS(BuildingsA,Land_Cargo_Patrol_V2_F,								120);
+			__BUILD_OBJECT_CLASS(BuildingsA,Land_GuardTower_01_F,								10);
+			__BUILD_OBJECT_CLASS(BuildingsA,Land_BagBunker_Large_F,								10);
+			__BUILD_OBJECT_CLASS(BuildingsA,Land_BagBunker_Small_F,								10);
+			__BUILD_OBJECT_CLASS(BuildingsA,Land_BagBunker_Tower_F,								10);
+			__BUILD_OBJECT_CLASS(BuildingsA,Land_Cargo_Patrol_V2_F,								10);
 		};
 
 		class Concealment {
@@ -209,7 +209,7 @@ class BuildObjects
 			__BUILD_OBJECT_CLASS(Concealment,Land_Wall_Tin_4_2,									10);
 			__BUILD_OBJECT_CLASS(Concealment,Land_Wall_Tin_4,									10);
 			__BUILD_OBJECT_CLASS(Concealment,Land_TinWall_02_l_4m_F,							10);
-			__BUILD_OBJECT_CLASS(Concealment,Land_TinWall_02_l_8m_F,							20);
+			__BUILD_OBJECT_CLASS(Concealment,Land_TinWall_02_l_8m_F,							10);
 		};
 
 		class Recreation {
@@ -217,7 +217,7 @@ class BuildObjects
 
 			// tables
 			__BUILD_OBJECT_CLASS(Recreation,Land_WoodenTable_02_large_F, 						10);
-			__BUILD_OBJECT_CLASS(Recreation,Land_PicnicTable_01_F, 								20);
+			__BUILD_OBJECT_CLASS(Recreation,Land_PicnicTable_01_F, 								10);
 
 			// sun chairs
 			__BUILD_OBJECT_CLASS(Recreation,Land_Sun_chair_F, 									10);
@@ -227,16 +227,16 @@ class BuildObjects
 			__BUILD_OBJECT_CLASS(Recreation,Land_CampingChair_V2_F, 							10);
 			__BUILD_OBJECT_CLASS(Recreation,Land_CampingChair_V2_white_F, 						10);
 			__BUILD_OBJECT_CLASS(Recreation,Land_ChairPlastic_F, 								10);
-			__BUILD_OBJECT_CLASS(Recreation,Land_ArmChair_01_F, 								20);
+			__BUILD_OBJECT_CLASS(Recreation,Land_ArmChair_01_F, 								10);
 
 			// bench
 			__BUILD_OBJECT_CLASS(Recreation,Land_Bench_05_F, 									10);
 			
 			// gym
-			__BUILD_OBJECT_CLASS(Recreation,Land_GymBench_01_F, 								20);
+			__BUILD_OBJECT_CLASS(Recreation,Land_GymBench_01_F, 								10);
 
 			// others 
-			__BUILD_OBJECT_CLASS(Recreation,Land_Carousel_01_F, 								150);
+			__BUILD_OBJECT_CLASS(Recreation,Land_Carousel_01_F, 								10);
 		};
 
 		class Special {
@@ -244,7 +244,7 @@ class BuildObjects
 			class RadioShack : BuildObjectBase {
 				className = "Land_TBox_F";
 				displayName = $STR_BUIO_RADIO;
-				buildResource = 100;
+				buildResource = 10;
 				isRadio = true;
 				description = $STR_BUIO_RADIO_DESC;
 			};

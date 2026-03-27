@@ -9,7 +9,7 @@
 
 #define pr private
 
-#define CREATE_LOCATION_COST 30
+#define CREATE_LOCATION_COST 10
 
 #define OOP_CLASS_NAME InGameMenuTabCommander
 CLASS("InGameMenuTabCommander", "DialogTabBase")
